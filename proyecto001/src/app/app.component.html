@@ -1,4 +1,64 @@
 <div>
-  <h1>Tu nombre es {{nombre}} y tienes {{edad}} años</h1>
-  <p>{{esFumador()}}</p>
+  <h1>Mi nombre es {{nombre}} <br></h1>
+  <!-- lo cogemos desde app.component.ts "export class AppComponent {  title = 'proyecto001';  nombre:string = 'Azahara'; }" -->
+
+  <h2>{{esFumador()}}</h2> <!-- hacer uso de métodos que vienen desde app.component.ts -->
+
+  <h3>{{notas}}</h3> <!-- mostrar estructura -->
+
+  <!-- es un if, si la variable edad es mayor o igual a 18, en la página aparecerá que es mayor de edad -->
+  <!-- si no, aparecerá que es menor de edad porque "menor" lleva al template "#menor"-->
+  <p *ngIf="edad>=18; else menor">Es mayor de edad</p>
+  <ng-template #menor>
+      <p>Es menor de edad</p>
+  </ng-template>
+
+  <!--<p *ngIf="edad>18">Es menor de edad</p>-->
+
+  <ul>
+      <!-- nota es un nombre cualquiera, pero notas hacce referencia a un array existente en el app.components.ts (esa parte debe existir) -->
+      <li *ngFor="let nota of notas">{{nota}}</li>
+  </ul>
+
+  <br>
+
+  <!-- otro ejemplo usando *ngFor -->
+  <table border="1">
+      <tr>
+          <th>
+              Nota
+          </th>
+      </tr>
+      <tr *ngFor="let nota of notas">
+          <td>{{nota}}</td>
+      </tr>
+  </table>
+
+  <br>
+
+  <!-- otro ejemplo usando *ngFor pero para un select (cogiendo de un array de objetos) -->
+  <select name="" id="provincias">
+      <!-- en el valor irá el id para saber a cuál está señalando exactamente (según el índice del for), y luego el nombre para que imprima el de ese id -->
+      <option *ngFor="let provincia of provincias" value="{{provincia.id}}">{{provincia.nombre}}</option>
+  </select>
+
+  <br><br><br>
+
+  <!-- eventos -->
+  <!-- en js es onclick, en angular es (click) -->
+  <button (click)="pulsarBoton()">Pulsa</button>
+
+  <div>
+      <p>Contador: {{contador}}</p>
+      <button (click)="incrementarContador()">Incrementar</button>
+      <button (click)="decrementarContador()">Decrementar</button>
+  </div>
+
+  <!-- ngModel (recuperar valores) -->
+  <!-- bind es bidireccional / template -> TS - TS -> template -->
+  <!-- para usarlo hay que importar FormsModule en app.module.ts -->
+   <br>
+  <input type="text" [(ngModel)]="nombre">
+  <p>Nombre: {{nombre}}</p> 
+
 </div>
