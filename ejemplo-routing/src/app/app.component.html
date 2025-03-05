@@ -1,0 +1,14 @@
+<header>Encabezado</header>
+
+<!-- Para usar rutas internas de Angular (usar routerLink en vez de href) -->
+<a routerLink="/home">Home</a>
+<a routerLink="/listadoproductos">Listado Productos</a>
+<a routerLink="/listadoclientes">Listado Clientes</a>
+
+<main>
+  <!-- Donde Angular carga los componentes (se lo decimos con <router-outlet>) -->
+  <!-- Para que funcione: url/componente --- Ejemplo: url/home - url/listadoclientes -->
+  <router-outlet></router-outlet>
+</main>
+
+<footer>Pie de página</footer>
